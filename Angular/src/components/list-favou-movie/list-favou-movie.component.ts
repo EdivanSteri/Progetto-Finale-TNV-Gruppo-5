@@ -15,8 +15,9 @@ export class ListFavouMovieComponent implements OnInit {
 
   moviesFavou: MovieFav [] = [];
   moviesTMDB: MovieTMDB []= [];
+  allMovieRatings: MovieRating [] = [];
+  rating: MovieRating | undefined = undefined;
   moviesRating: MovieRating [] = [];
-  movieComments: MovieComment [] = [];
   allMovieComments: MovieComment [] | null = [];
   comment: MovieComment | undefined = undefined;
 
@@ -29,10 +30,20 @@ export class ListFavouMovieComponent implements OnInit {
   ngOnInit(): void {
 
     this.backendService.getAllMovieComment().subscribe(
+    {
+      next: (val) => {
+        this.allMovieComments= val,
+        console.log(this.allMovieComments)
+      }, 
+      error: () => console.log("error", this.allMovieComments)
+    })   
+
+
+    this.backendService.getAllMovieRating().subscribe(
       {
         next: (val) => {
-          this.allMovieComments= val,
-          console.log(this.allMovieComments)
+          this.allMovieRatings= val,
+          console.log(this.allMovieRatings)
         }, 
         error: () => console.log("error", this.allMovieComments)
       })   
@@ -45,11 +56,6 @@ export class ListFavouMovieComponent implements OnInit {
          
           this.backendService.getMovieById(id).subscribe({
             next: (val) => this.moviesTMDB[i] = val
-          })
-
-          this.backendService.getMovieRatingsByUserIdAndMovieId(1, id).subscribe({
-            next: (val) => this.moviesRating[i] = val,
-            error: (val) =>  this.moviesRating[i] = val
           })
         }
       }
@@ -93,6 +99,19 @@ export class ListFavouMovieComponent implements OnInit {
     this.comment  = this.allMovieComments?.find(x => x.user_id == 1 &&  x.movie_id == movieId);
 
     if(this.comment != undefined){
+      return true;
+    }else{
+      console.log("commento non torvato")
+      return false;
+    }
+  }
+
+
+  findRating(movieId: number){
+
+    this.rating  = this.allMovieRatings?.find(x => x.user_id == 1 &&  x.movie_id == movieId);
+
+    if(this.rating != undefined){
       return true;
     }else{
       console.log("commento non torvato")
