@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/models/User';
+import { BackendService } from 'src/service/backend.service';
 import { AuthenticationService } from '../../service/authentication.service';
 
 @Component({
@@ -10,23 +12,36 @@ import { AuthenticationService } from '../../service/authentication.service';
 })
 export class LoginComponent implements OnInit {
 
+  user: User | null = null;
   username = ''
   password = ''
-  invalidLogin = false
+  invalidLogin: boolean | null = null;
 
   constructor(private router: Router,
-              private loginservice: AuthenticationService){ }
+              private loginservice: AuthenticationService, private backendAPIService: BackendService){ }
 
   ngOnInit(): void {
   }
 
   checkLogin(loginForm: NgForm){
-    if(this.loginservice.authenticate(loginForm.controls['username'].value, loginForm.controls['password'].value)){
-      this.router.navigate(['/home'])
-      this.invalidLogin = false
-    }else{
-      this.invalidLogin = true
-    }
+    this.backendAPIService.login(loginForm.controls['username'].value, loginForm.controls['password'].value).subscribe({
+      next: (res) => {
+        this.user = res;
+        if(this.user != null){
+          this.invalidLogin = false,
+        sessionStorage.setItem('username', loginForm.controls['username'].value),
+        this.router.navigate(['/home'])
+        }else{
+          this.invalidLogin = true ,
+          console.log('Error!',res) 
+        }
+        
+      },
+      error: (res) => {
+        this.invalidLogin = true ,
+        console.log('Error!',res)               
+      }
+    })
   }
 
 }

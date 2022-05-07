@@ -19,6 +19,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.apache.httpcomponents:httpclient'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 }

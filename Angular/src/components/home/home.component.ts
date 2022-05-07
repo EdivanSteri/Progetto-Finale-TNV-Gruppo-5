@@ -10,11 +10,14 @@ import { BackendService } from 'src/service/backend.service';
 })
 export class HomeComponent implements OnInit {
 
+  username: string | null = null;
   movies: MovieFav[] = [];
   isVisible=true;
   constructor(private backendService: BackendService, public loginService: AuthenticationService) { }
 
   ngOnInit(): void {
+    this.username = sessionStorage.getItem('username');
+    console.log(this.username);
     this.backendService.getListaPreferiti().subscribe({
       next: (res) => this.movies = res,
       error: () => console.log('Error!'),

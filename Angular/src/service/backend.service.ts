@@ -6,6 +6,7 @@ import { MovieComment } from 'src/models/MovieComment';
 import { MovieFav } from 'src/models/MovieFavor';
 import { MovieListTMDB } from 'src/models/MovieListTMDB';
 import { MovieRating } from 'src/models/MovieRating';
+import { User } from 'src/models/User';
 import { MovieTMDB } from '../models/MovieTMDB';
 
 
@@ -17,6 +18,11 @@ export class BackendService {
   constructor(private httpClient: HttpClient) { }
 
   apiKey: string = '317291492b88ae1febc86ead73dbe43b';
+
+  //SPRINGBOOT
+  login(username: string, password: string){
+    return this.httpClient.get<User>(`http://localhost:8080/users/username/password/${username}/${password}`);
+  }
 
   //NODE
   getFilmPreferito(movie_id: number | null){

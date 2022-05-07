@@ -62,6 +62,11 @@ public class UserService {
     }
 
     public User getUserByUsernameAndPassword(String username, String password) {
-       return userRepositoryDAO.findUserByUsernameAndPassword(username, password);
+        User user = userRepositoryDAO.findUserByUsernameAndPassword(username, password);
+        if(user != null){
+            return user;
+        }else{
+            return null;
+        }
     }
 }

@@ -56,6 +56,7 @@ public class securityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .httpBasic();
+
     }
 
     @Bean
