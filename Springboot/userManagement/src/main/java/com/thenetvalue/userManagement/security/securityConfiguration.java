@@ -23,7 +23,13 @@ public class securityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
-                .dataSource(this.dataSource);
+                .dataSource(this.dataSource)
+                .usersByUsernameQuery("select username,password,enabled "
+                        + "from user "
+                        + "where username = ?")
+                .authoritiesByUsernameQuery("select username,authority "
+                        + "from user "
+                        + "where username = ?");
                 /*.withUser("user")
                 .password(passwordEncoder.encode("password"))
                 .roles("USER")
@@ -46,7 +52,8 @@ public class securityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests()
-                .anyRequest().authenticated()
+                .antMatchers("*")
+                .permitAll()
                 .and()
                 .httpBasic();
     }

@@ -29,7 +29,7 @@ public class UserService {
 
     public User getUserById(int id){
         Optional result = userRepositoryDAO.findById(id);
-       return (User) result.get();
+        return (User) result.get();
     }
 
 
