@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch UserManagementApplication",
+            "request": "launch",
+            "mainClass": "com.thenetvalue.userManagement.UserManagementApplication",
+            "projectName": "userManagement"
+        },
+        {
+            "type": "java",
             "name": "Launch MoviesApplication",
             "request": "launch",
             "mainClass": "com.themoviedb.movies.MoviesApplication",
