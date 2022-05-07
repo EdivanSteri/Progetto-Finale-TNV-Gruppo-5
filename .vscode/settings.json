@@ -6,5 +6,6 @@
     "spring.initializr.defaultPackaging": "WAR",
     "spring.initializr.serviceUrl": [
         "https://start.spring.io"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
