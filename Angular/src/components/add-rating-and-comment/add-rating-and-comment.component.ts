@@ -11,6 +11,7 @@ import { BackendService } from 'src/service/backend.service';
 })
 export class AddRatingAndCommentComponent implements OnInit {
 
+  userId: number = Number(sessionStorage.getItem('user_id'));
   movieId!: number;
   movieTMDB: MovieTMDB | null = null;
   date1: string | null = null;
@@ -21,6 +22,7 @@ export class AddRatingAndCommentComponent implements OnInit {
   
 
   ngOnInit(): void {
+    
     this.route.params.subscribe((params) => this.movieId = params['movieId']);
     this.backendService.getMovieById(this.movieId).subscribe({
       next: (res) => this.movieTMDB = res,

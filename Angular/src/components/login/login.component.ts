@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
         if(this.user != null){
           this.invalidLogin = false,
         sessionStorage.setItem('username', loginForm.controls['username'].value),
+        sessionStorage.setItem('user_id', this.user.user_id.toString()),
         this.router.navigate(['/home'])
         }else{
           this.invalidLogin = true ,
