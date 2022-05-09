@@ -145,6 +145,25 @@ class RatingController extends Controller
     }
 
     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Rating  $rating
+     * @return 'Illuminate\Http\JsonResponse'
+     */
+    public function destroyByUserId($user_id)
+    {
+        DB::table('ratings')->
+        select('movie_rating', 'user_id', 'movie_id')->
+        where('user_id', '=', $user_id)->
+        delete();
+
+        return response()->json([
+            'message' => 'Rating Deleted!',
+            'Response Status' => Response::HTTP_NO_CONTENT
+        ]);
+    }
+
+    /**
      * Get all movie ratings by their movie_id
      * 
      * @param  \App\Models\Rating  $rating

@@ -33,3 +33,6 @@ Route::get('/ratings/user/and/movie/id/{user_id}/{movie_id}', [RatingController:
 
 Route::delete('/ratings/user/and/movie/id/{user_id}/{movie_id}', [RatingController::class,
     'destroy']);
+
+Route::delete('/ratings/userId/{user_id}', [RatingController::class,
+    'destroyByUserId']);
