@@ -129,12 +129,29 @@ export const deleteFavouriteMovie = async (req, res) => {
         res.sendStatus(500);
     }
 }
+
 export const deleteFavouriteMovieByUserIdMovieID = async (req, res) => {
     try {
         await FavouriteMovie.destroy({
             where: {
                 user_id: req.params.user_Id,
                 movie_id: req.params.movie_Id
+            }
+        });
+        res.json({
+            "message": "Favourite Movie Deleted"
+        });
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
+}
+
+export const deleteFavouriteMovieByUserId = async (req, res) => {
+    try {
+        await FavouriteMovie.destroy({
+            where: {
+                user_id: req.params.user_Id
             }
         });
         res.json({
