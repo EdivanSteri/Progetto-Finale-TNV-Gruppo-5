@@ -22,13 +22,14 @@ export class ListFavouMovieComponent implements OnInit {
   comment: MovieComment | undefined = undefined;
 
   x: number = 0;
+  user_id: number = Number(sessionStorage.getItem('user_id'));
+
 
   constructor(private backendService:BackendService,  public loginService: AuthenticationService) { 
-
+  
   }
 
   ngOnInit(): void {
-
     this.backendService.getAllMovieComment().subscribe(
     {
       next: (val) => {
@@ -48,7 +49,7 @@ export class ListFavouMovieComponent implements OnInit {
         error: () => console.log("error", this.allMovieComments)
       })   
 
-    this.backendService.getFilmPreferitiByUserId(1).subscribe({
+    this.backendService.getFilmPreferitiByUserId(this.user_id).subscribe({
       next: (res) => {
         this.moviesFavou = res;
         for (let i = 0; i < this.moviesFavou.length; i++) {
@@ -72,17 +73,17 @@ export class ListFavouMovieComponent implements OnInit {
   }
 
 
-  deleteMoviefavour(userId: number, movieId: number){
-    this.backendService.deleteFilmPreferitoByUserMovieId(userId, movieId).subscribe({
+  deleteMoviefavour(movieId: number){
+    this.backendService.deleteFilmPreferitoByUserMovieId(this.user_id, movieId).subscribe({
       next: () => console.log("Favourite Film Dalated"),
       error: (err) => console.log("Favourite Film Not Dalated", err)
     })
-    this.backendService.deleteCommentByUserIdMovieId(userId, movieId).subscribe(
+    this.backendService.deleteCommentByUserIdMovieId(this.user_id, movieId).subscribe(
     {
       next: () => console.log("Comment Dalated"),
       error: (err) => console.log("Comment Not Dalated", err)
     })
-    this.backendService.deleteMovieRatingByUserIdAndMovieId(userId, movieId).subscribe({
+    this.backendService.deleteMovieRatingByUserIdAndMovieId(this.user_id, movieId).subscribe({
       next: () => console.log("Rating Dalated"),
       error: (err) => console.log("Rating Not Dalated", err)
     })
@@ -96,7 +97,7 @@ export class ListFavouMovieComponent implements OnInit {
 
   findComment(movieId: number){
 
-    this.comment  = this.allMovieComments?.find(x => x.user_id == 1 &&  x.movie_id == movieId);
+    this.comment  = this.allMovieComments?.find(x => x.user_id == this.user_id &&  x.movie_id == movieId);
 
     if(this.comment != undefined){
       return true;
@@ -109,7 +110,7 @@ export class ListFavouMovieComponent implements OnInit {
 
   findRating(movieId: number){
 
-    this.rating  = this.allMovieRatings?.find(x => x.user_id == 1 &&  x.movie_id == movieId);
+    this.rating  = this.allMovieRatings?.find(x => x.user_id == this.user_id &&  x.movie_id == movieId);
 
     if(this.rating != undefined){
       return true;

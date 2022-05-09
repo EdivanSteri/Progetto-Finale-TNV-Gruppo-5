@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieComment } from 'src/models/MovieComment';
-import { User } from 'src/models/User';
+import { AddedUser } from 'src/models/AddedUser';
 import { BackendService } from 'src/service/backend.service';
 import { MovieRatingComponent } from '../movie-rating/movie-rating.component';
 
@@ -12,8 +12,7 @@ import { MovieRatingComponent } from '../movie-rating/movie-rating.component';
 })
 export class MovieCommentDetailComponent implements OnInit {
 
-  user: User | null = null;
-  isLogged: boolean | null = null;
+  isRegistered: boolean | null = null;
 
   constructor( 
     private backendAPIService:BackendService ) { 
@@ -21,10 +20,31 @@ export class MovieCommentDetailComponent implements OnInit {
     }
 
   ngOnInit(): void {
-
+    this.addUser();
   }
 
   
-  
+  addUser(){
+    let user: AddedUser = {
+      username: "michelelai", password: "6379",
+    };
+    
+    this.backendAPIService.regitrattion(user).subscribe({
+      next: (res) => {
+        if(res != null){
+          this.isRegistered = true;
+          console.log("loggato", res);
+        }else{
+          this.isRegistered = false;
+          console.log("non loggato, valore null", res);
+        }
+        
+      },
+      error: (err) => {
+        this.isRegistered = false;
+        console.log("non loggato", err);
+      }
+    })
+  }
 
 }

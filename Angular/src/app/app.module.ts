@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AddMovieCommentComponent } from '../components/add-movie-comment/add-movie-comment.component';
-import { AddUtentiComponent } from '../components/add-utenti/add-utenti.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { GameComponent } from '../components/game/game.component';
 import { HomeComponent } from '../components/home/home.component';
@@ -20,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListFavouMovieComponent } from '../components/list-favou-movie/list-favou-movie.component';
 import { AddRatingAndCommentComponent } from '../components/add-rating-and-comment/add-rating-and-comment.component';
+import { RegistrationComponent } from '../components/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,6 @@ import { AddRatingAndCommentComponent } from '../components/add-rating-and-comme
     LoginComponent,
     LogoutComponent,
     UtentiComponent,
-    AddUtentiComponent,
     HomeComponent,
     MovieCommentComponent,
     MovieRatingComponent,
@@ -40,6 +39,7 @@ import { AddRatingAndCommentComponent } from '../components/add-rating-and-comme
     ListFilmAndHistoryComponent,
     ListFavouMovieComponent,
     AddRatingAndCommentComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,

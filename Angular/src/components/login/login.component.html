@@ -14,14 +14,14 @@
 
     <!-- Login Form -->
     <form  #loginForm="ngForm" (ngSubmit)="checkLogin(loginForm)">
-      <input type="text" id="login" class="fadeIn second" placeholder="Username" name="username" [(ngModel)]="username" required>
-      <input type="text" id="password" class="fadeIn third" name="password" placeholder="Password" [(ngModel)]="password" required>
+      <input type="text" id="login" class="fadeIn second" placeholder="Username" name="username" ngModel required>
+      <input type="text" id="password" class="fadeIn third" name="password" placeholder="Password" ngModel required>
       <button type="submit" class="btn btn-primary">Login</button>
     </form>
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-     
+      Don't have an account? <a href="../registration/">Signup</a>
     </div>
 
   </div>

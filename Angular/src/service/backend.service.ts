@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { NonNullAssert } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { AddedUser } from 'src/models/AddedUser';
+import { LoggedUser } from 'src/models/LoggedUser';
 import { MovieComment } from 'src/models/MovieComment';
 import { MovieFav } from 'src/models/MovieFavor';
 import { MovieListTMDB } from 'src/models/MovieListTMDB';
 import { MovieRating } from 'src/models/MovieRating';
-import { User } from 'src/models/User';
 import { MovieTMDB } from '../models/MovieTMDB';
 
 
@@ -21,7 +20,11 @@ export class BackendService {
 
   //SPRINGBOOT
   login(username: string, password: string){
-    return this.httpClient.get<User>(`http://localhost:8080/users/username/password/${username}/${password}`);
+    return this.httpClient.get<LoggedUser>(`http://localhost:8080/users/username/password/${username}/${password}`);
+  }
+
+  regitrattion(user: AddedUser){
+    return this.httpClient.post<AddedUser>(`http://localhost:8080/users/`, user);
   }
 
   //NODE

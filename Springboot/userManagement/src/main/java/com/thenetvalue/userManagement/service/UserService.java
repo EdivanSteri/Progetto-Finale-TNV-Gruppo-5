@@ -18,12 +18,12 @@ public class UserService {
         this.userRepositoryDAO = userRepositoryDAO;
     }
 
-    public  String addUser(User user){
+    public  User addUser(User user){
        User result = userRepositoryDAO.save(user);
        if(result != null){
-           return "Utente aggiunto correttamente";
+           return result;
         }else{
-           return "Utente non aggiunto, errore";
+           return null;
         }
     }
 

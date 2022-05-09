@@ -22,7 +22,6 @@ export class AddRatingAndCommentComponent implements OnInit {
   
 
   ngOnInit(): void {
-    
     this.route.params.subscribe((params) => this.movieId = params['movieId']);
     this.backendService.getMovieById(this.movieId).subscribe({
       next: (res) => this.movieTMDB = res,
