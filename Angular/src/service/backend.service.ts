@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 import { Injectable } from '@angular/core';
 import { AddedUser } from 'src/models/AddedUser';
 import { LoggedUser } from 'src/models/LoggedUser';
@@ -51,6 +52,9 @@ export class BackendService {
   }
   deleteFilmPreferitoByUserMovieId(user_id: number | null, movie_id: number | null){
     return this.httpClient.delete<MovieFav>(`http://localhost:5000/favouritemovie/${user_id}/${movie_id}`)
+  }
+  deleteFilmPreferitoByUserId(user_id: number | null){
+    return this.httpClient.delete<MovieFav>(`http://localhost:5000/deltefavouritemovie/userId/${user_id}`)
   }
 
   //DOTNET
@@ -125,6 +129,10 @@ export class BackendService {
 
   deleteMovieRatingByUserIdAndMovieId(user_id: number, movie_id: number) {
     return this.httpClient.delete(`http://localhost:8000/api/ratings/user/and/movie/id/${user_id}/${movie_id}`)
+  }
+
+  deleteMovieRatingByUserId(user_id: number) {
+    return this.httpClient.delete(`http://localhost:8000/api/ratings/userId/${user_id}}`)
   }
 
 

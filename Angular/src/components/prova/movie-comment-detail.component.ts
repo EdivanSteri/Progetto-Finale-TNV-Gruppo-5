@@ -12,7 +12,7 @@ import { MovieRatingComponent } from '../movie-rating/movie-rating.component';
 })
 export class MovieCommentDetailComponent implements OnInit {
 
-  isRegistered: boolean | null = null;
+  isDeleted: boolean | null = null;
 
   constructor( 
     private backendAPIService:BackendService ) { 
@@ -20,31 +20,47 @@ export class MovieCommentDetailComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.addUser();
+    this.deleteFavouMovieByUserId();
+    this.deleteCommentsByUserId();
+    this.deleteRatinsByUserId();
+
   }
 
   
-  addUser(){
-    let user: AddedUser = {
-      username: "michelelai", password: "6379",
-    };
-    
-    this.backendAPIService.regitrattion(user).subscribe({
-      next: (res) => {
-        if(res != null){
-          this.isRegistered = true;
-          console.log("loggato", res);
-        }else{
-          this.isRegistered = false;
-          console.log("non loggato, valore null", res);
-        }
-        
+  deleteCommentsByUserId(){
+    this.backendAPIService.deleteCommentsByUserId(1001).subscribe({
+      next: (res) =>{
+        console.log("dalated comments", res)
       },
-      error: (err) => {
-        this.isRegistered = false;
-        console.log("non loggato", err);
+      error: (err) =>{
+        console.log("not deleted comments", err)
       }
     })
   }
+
+  deleteRatinsByUserId(){
+    this.backendAPIService.deleteMovieRatingByUserId(1001).subscribe({
+      next: (res) =>{
+        console.log("dalated ratings", res)
+      },
+      error: (err) =>{
+        console.log("not deleted ratings", err)
+      }
+    })
+  }
+
+  deleteFavouMovieByUserId(){
+    this.backendAPIService.deleteFilmPreferitoByUserId(1001).subscribe({
+      next: (res) =>{
+        console.log("dalated favou movies", res)
+      },
+      error: (err) =>{
+        console.log("not deleted favou movies", err)
+      }
+    })
+  }
+
+
+
 
 }

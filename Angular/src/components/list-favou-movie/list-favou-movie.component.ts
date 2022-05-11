@@ -145,4 +145,47 @@ export class ListFavouMovieComponent implements OnInit {
     return Array<number>(starNumber+1)
   }
 
+  svuotaLista(){
+    this.deleteFavouMovieByUserId();
+    this.deleteCommentsByUserId();
+    this.deleteRatinsByUserId();
+    setTimeout(
+      function(){ 
+      location.reload(); 
+      }, 1000);
+  }
+
+  deleteCommentsByUserId(){
+    this.backendService.deleteCommentsByUserId(this.user_id).subscribe({
+      next: (res) =>{
+        console.log("dalated comments", res)
+      },
+      error: (err) =>{
+        console.log("not deleted comments", err)
+      }
+    })
+  }
+
+  deleteRatinsByUserId(){
+    this.backendService.deleteMovieRatingByUserId(this.user_id).subscribe({
+      next: (res) =>{
+        console.log("dalated ratings", res)
+      },
+      error: (err) =>{
+        console.log("not deleted ratings", err)
+      }
+    })
+  }
+
+  deleteFavouMovieByUserId(){
+    this.backendService.deleteFilmPreferitoByUserId(this.user_id).subscribe({
+      next: (res) =>{
+        console.log("dalated favou movies", res)
+      },
+      error: (err) =>{
+        console.log("not deleted favou movies", err)
+      }
+    })
+  }
+
 }
