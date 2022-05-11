@@ -86,6 +86,10 @@ export class BackendService {
     return this.httpClient.delete<MovieComment>(`http://localhost:5299/comments/${userId}/${movieId}`);
   }
 
+  deleteCommentsByUserId(userId: number){
+    return this.httpClient.delete<MovieComment>(`http://localhost:5299/comments/userId/${userId}`);
+  }
+
   
 
   //LARAVEL
