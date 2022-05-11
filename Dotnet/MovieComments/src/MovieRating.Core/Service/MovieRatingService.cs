@@ -50,6 +50,7 @@ namespace MovieRating.Core.Service
 
         public void DeleteCommentByUserIdMovieId(int userId, int movieId) => _storageService.DeleteCommentByUserIdMovieId(userId, movieId);
 
+        public void DeleteCommentsByUserId(int userId) => _storageService.DeleteCommentsByUserId(userId);
 
         private static void ValidateCommentOrFail(Comment comment) => RunCommentValidationsOrFail(comment);
 

@@ -35,6 +35,8 @@ namespace MovieRating.DB.Service
 
             public void DeleteCommentByUserIdMovieId(int userId, int movieId) => _dbService.DeleteByUserIdMovieId(userId, movieId);
 
+            public void DeleteCommentsByUserId(int userId) => _dbService.DeleteByUserId(userId);
+
 
             public List<Comment> GetAllComments() => _dbService
                 .All()

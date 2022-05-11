@@ -70,6 +70,13 @@ namespace MovieRating.DB.Service
             return comment;
         }
 
+        public List<MovieRatingEntity> DeleteByUserId(int userId)
+        {
+            var comments = FindCommentsByUserIdOrFail(userId);
+            _contextManager.Comments.RemoveRange(comments);
+            _contextManager.SaveChanges();
+            return comments;
+        }
         public MovieRatingEntity UpdateById(int id, MovieRatingEntity comment)
         {
             var previousComment = FindCommentOrFail(id);
@@ -125,6 +132,21 @@ namespace MovieRating.DB.Service
             }
 
             return comment;
+        }
+
+        private List<MovieRatingEntity> FindCommentsByUserIdOrFail(int userId)
+        {
+            var comments = _contextManager
+            .Comments
+            .Where(c => c.UserId == userId)
+            .ToList();
+
+            if (comments.Count == 0)
+            {
+                throw new NotFoundCommentsByUserId(userId);
+            }
+
+            return comments;
         }
 
     }

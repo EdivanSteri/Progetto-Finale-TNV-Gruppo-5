@@ -49,6 +49,12 @@ namespace MovieRating.Core.Service.Impl
             _comments.Remove(commentToDelete);
         }
 
+        public void DeleteCommentsByUserId(int userId)
+        {
+            //List<Comment> commentsToDelete = FindCommenstOrFailUserId(userId);
+            _comments.RemoveAll(c => c.user_id == userId);
+        }
+
         public List<Comment> GetAllComments()
         {
             return _comments;
@@ -104,6 +110,15 @@ namespace MovieRating.Core.Service.Impl
             if (commentToSearch == null) throw new NotFoundCommentByUserIdAndMovieId(userId, movieId);
 
             return commentToSearch;
+        }
+
+         private List<Comment> FindCommenstOrFailUserId(int userId)
+        {
+            List<Comment> commentsToSearch = _comments.FindAll(c => c.user_id == userId);
+
+            if (commentsToSearch.Count == 0) throw new NotFoundCommentsByUserId(userId);
+
+            return commentsToSearch;
         }
     }
 }

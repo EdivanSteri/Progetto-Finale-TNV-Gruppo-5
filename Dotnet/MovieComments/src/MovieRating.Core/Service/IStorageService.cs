@@ -24,7 +24,11 @@ namespace MovieRating.Core.Model
 
         public void DeleteCommentById(int commentId);
 
-         public void DeleteCommentByUserIdMovieId(int userId, int movieId);
+        public void DeleteCommentByUserIdMovieId(int userId, int movieId);
+
+        public void DeleteCommentsByUserId(int userId);
+
+
     }
 }
 
