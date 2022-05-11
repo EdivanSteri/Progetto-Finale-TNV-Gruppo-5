@@ -12,7 +12,7 @@ import { MovieRatingComponent } from '../movie-rating/movie-rating.component';
 })
 export class MovieCommentDetailComponent implements OnInit {
 
-  isDeleted: boolean | null = null;
+
 
   constructor( 
     private backendAPIService:BackendService ) { 
@@ -20,45 +20,10 @@ export class MovieCommentDetailComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.deleteFavouMovieByUserId();
-    this.deleteCommentsByUserId();
-    this.deleteRatinsByUserId();
 
   }
 
-  
-  deleteCommentsByUserId(){
-    this.backendAPIService.deleteCommentsByUserId(1001).subscribe({
-      next: (res) =>{
-        console.log("dalated comments", res)
-      },
-      error: (err) =>{
-        console.log("not deleted comments", err)
-      }
-    })
-  }
-
-  deleteRatinsByUserId(){
-    this.backendAPIService.deleteMovieRatingByUserId(1001).subscribe({
-      next: (res) =>{
-        console.log("dalated ratings", res)
-      },
-      error: (err) =>{
-        console.log("not deleted ratings", err)
-      }
-    })
-  }
-
-  deleteFavouMovieByUserId(){
-    this.backendAPIService.deleteFilmPreferitoByUserId(1001).subscribe({
-      next: (res) =>{
-        console.log("dalated favou movies", res)
-      },
-      error: (err) =>{
-        console.log("not deleted favou movies", err)
-      }
-    })
-  }
+ 
 
 
 
