@@ -64,6 +64,6 @@ export class ListFilmAndHistoryComponent implements OnInit {
 
   isFavourite(movieId: number){
     console.log(this.movieFavourList)
-    return this.movieFavourList?.find(x => x.movie_Id == movieId)
+    return this.movieFavourList?.find(x => x.movie_Id == movieId && x.user_Id == this.user_id)
   }
 }
