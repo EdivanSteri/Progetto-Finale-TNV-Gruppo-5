@@ -1,6 +1,7 @@
 import { query } from '@angular/animations';
 import { Component, getNgModuleById, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { MovieComment } from 'src/models/MovieComment';
 import { MovieFav } from 'src/models/MovieFavor';
 import { MovieListTMDB } from 'src/models/MovieListTMDB';
 import { MovieRating } from 'src/models/MovieRating';
@@ -23,6 +24,10 @@ export class ListFilmAndHistoryComponent implements OnInit {
   flag: boolean | null = null;
   moviefav: MovieFav | null = null;
   user_id: number = Number(sessionStorage.getItem('user_id'));
+  
+  commentsByMovieId: MovieComment []= [];
+  prova: boolean | null = null;
+  
  
   constructor(private backendService:BackendService, private route: ActivatedRoute, public loginService: AuthenticationService) { 
 
@@ -66,4 +71,19 @@ export class ListFilmAndHistoryComponent implements OnInit {
     console.log(this.movieFavourList)
     return this.movieFavourList?.find(x => x.movie_Id == movieId && x.user_Id == this.user_id)
   }
+
+  getCommentsByMovieId(movieId: number){
+    this.backendService.getAllMovieCommentsByMovieId(movieId).subscribe({
+      next: (res) => {
+        this.commentsByMovieId = res,
+        console.log(res, "commenti trovati")
+        this.prova = true;
+      },
+      error: (err) => {
+        console.log(err, "nessuna lista commenti"),
+        this.prova = false;
+      }
+    })
+  }
+
 }
