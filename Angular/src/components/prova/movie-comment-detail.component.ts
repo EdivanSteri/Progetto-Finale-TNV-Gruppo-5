@@ -12,7 +12,8 @@ import { MovieRatingComponent } from '../movie-rating/movie-rating.component';
 })
 export class MovieCommentDetailComponent implements OnInit {
 
-
+  commentsByMovieId: MovieComment []= [];
+  prova: boolean | null = null;
 
   constructor( 
     private backendAPIService:BackendService ) { 
@@ -20,11 +21,23 @@ export class MovieCommentDetailComponent implements OnInit {
     }
 
   ngOnInit(): void {
-
+    this.getCommentsByMovieId();
   }
 
  
-
+  getCommentsByMovieId(){
+    this.backendAPIService.getAllMovieCommentsByMovieId(453395).subscribe({
+      next: (res) => {
+        this.commentsByMovieId = res,
+        console.log(res, "commenti trovati")
+        this.prova = true;
+      },
+      error: (err) => {
+        console.log(err),
+        this.prova = false;
+      }
+    })
+  }
 
 
 

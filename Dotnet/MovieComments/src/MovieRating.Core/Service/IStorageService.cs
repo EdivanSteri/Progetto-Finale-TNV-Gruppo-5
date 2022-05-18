@@ -14,6 +14,8 @@ namespace MovieRating.Core.Model
 
         public List<Comment> GetByUserId(int userId);
 
+        public List<Comment> GetByMovieId(int movieId);
+
         public Comment GetByUserIdMovieId(int userId, int movieId);
 
         public Comment AddComment(Comment comment);

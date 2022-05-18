@@ -37,6 +37,11 @@ namespace MovieRating.Core.Service.Impl
             return _comments.Where(c => c.user_id == userId).ToList();
         }
 
+        public List<Comment> GetByMovieId(int movieId)
+        {
+            return _comments.Where(c => c.movie_id == movieId).ToList();
+        }
+
         public void DeleteCommentById(int commentId)
         {
             Comment commentToDelete = FindCommentOrFail(commentId);

@@ -26,7 +26,9 @@ namespace MovieRating.Core.Service
 
         public List<Comment> GetAllComments() => _storageService.GetAllComments();
 
-        public List<Comment> GetAllCommentsByUserId(int user_id) => _storageService.GetByUserId(user_id);
+        public List<Comment> GetAllCommentsByUserId(int userId) => _storageService.GetByUserId(userId);
+
+        public List<Comment> GetAllCommentsByMovieId(int movieId) => _storageService.GetByMovieId(movieId);
 
         public Comment GetCommentById(int id) => _storageService.GetCommentById(id);
 

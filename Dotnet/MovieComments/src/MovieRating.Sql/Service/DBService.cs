@@ -47,6 +47,17 @@ namespace MovieRating.DB.Service
 
         }
 
+        public List<MovieRatingEntity> GetByMovieId(int movieId) {
+            
+            var comment = FindMovieIdOrFail(movieId);
+
+            return _contextManager
+            .Comments
+            .Where(c => c.MovieId == movieId)
+            .ToList();
+
+        }
+
         public MovieRatingEntity Add(MovieRatingEntity comment)
         {
             _contextManager.Comments.Add(comment);
@@ -123,6 +134,16 @@ namespace MovieRating.DB.Service
             return comment;
         }
 
+          private MovieRatingEntity FindMovieIdOrFail(int movieId)
+        {
+            var comment = _contextManager.Comments.FirstOrDefault(x => x.MovieId == movieId);
+            if (comment == null)
+            {
+                throw new NotFoundCommentsByMovieId(movieId);
+            }
+
+            return comment;
+        }
         private MovieRatingEntity FindCommentOrFailUserIdMovieId(int userId, int movieId)
         {
            var comment = _contextManager.Comments.FirstOrDefault(x => x.UserId == userId && x.MovieId == movieId);

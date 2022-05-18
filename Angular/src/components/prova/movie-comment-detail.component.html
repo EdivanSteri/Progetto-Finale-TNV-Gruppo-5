@@ -1,0 +1,10 @@
+<div *ngIf="prova">
+    <div *ngFor="let movie of commentsByMovieId">
+         {{movie.user_id}}
+        {{movie?.comment}}<br>
+    </div>
+</div>
+
+<div *ngIf="!prova">
+
+</div>

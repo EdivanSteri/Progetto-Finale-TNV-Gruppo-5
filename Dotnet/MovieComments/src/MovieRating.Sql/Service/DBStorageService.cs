@@ -49,6 +49,11 @@ namespace MovieRating.DB.Service
                 .Select(entity => MovieRatingMapper.ToComment(entity))
                 .ToList();
 
+            public List<Comment> GetByMovieId(int movieId) => _dbService
+                .GetByMovieId(movieId)
+                .Select(entity => MovieRatingMapper.ToComment(entity))
+                .ToList();
+
 
             public Comment GetCommentById(int commentId) =>
                 MovieRatingMapper.ToComment(_dbService.GetById(commentId));

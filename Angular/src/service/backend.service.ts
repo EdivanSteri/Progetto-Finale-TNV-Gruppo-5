@@ -74,6 +74,10 @@ export class BackendService {
     return this.httpClient.get<MovieComment[]>(`http://localhost:5299/comments/userId/${userId}`);
   }
 
+  getAllMovieCommentsByMovieId(movieId: number | null){
+    return this.httpClient.get<MovieComment[]>(`http://localhost:5299/comments/movieId/${movieId}`);
+  }
+
   addMovieComment(movieComment: MovieComment){
     return this.httpClient.post(`http://localhost:5299/comments/`, movieComment);
   }
