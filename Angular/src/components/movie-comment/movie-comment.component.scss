@@ -1,0 +1,31 @@
+
+h1{
+    text-align: center;
+}
+
+div.commenti,  div.image{
+    margin:0 2px;
+    padding:0;
+}
+
+div.commenti{
+    border: solid 2px black;  
+    float: right;  
+}
+
+div.image{
+    float: left;
+}
+
+div.commenti .commento{
+    background-color: white;
+    border: solid 2px black;
+    border-radius: 10px 10px 10px 10px;
+    padding:2%; 
+}
+
+.commento .username{
+    background-color: rgb(2, 236, 253);
+    border-radius: 10px 10px 10px 10px;
+    max-width:fit-content;
+}

@@ -28,6 +28,10 @@ export class BackendService {
     return this.httpClient.post<AddedUser>(`http://localhost:8080/users/`, user);
   }
 
+  getUserByuserId(userId: number){
+    return this.httpClient.get<LoggedUser>(`http://localhost:8080/users/${userId}`);
+  }
+
   //NODE
   getFilmPreferito(movie_id: number | null){
     return this.httpClient.get<MovieFav>(`http://localhost:5000/favouritemovie/${movie_id}`);
