@@ -1,7 +1,8 @@
+<app-navbar></app-navbar>
 <div *ngIf="!notFoundComment">
   <div class="position-absolute top-50 start-50 translate-middle">
     <div>
-      <h1>All comments on the film<img src="../../assets/icons8-commenti.gif"></h1>
+      <h2>All comments on the film<img src="../../assets/icons8-commenti.gif"></h2>
       <div class="image">
         <img src="https://image.tmdb.org/t/p/w300{{movieTMDB?.poster_path}}" class="card-img-top" alt={{movieTMDB?.title}}>
       </div>
@@ -21,11 +22,8 @@
             </div>
           </div>
       </div>
-    </div>
-   
+    </div> 
+    <button class="btn btn-primary" (click)="goBack()">Torna alla lista film</button>
   </div>
 </div>
 
-<div *ngIf="notFoundComment">
-  ERROR
-</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { MovieComment } from 'src/models/MovieComment';
 import { MovieFav } from 'src/models/MovieFavor';
 import { MovieRating } from 'src/models/MovieRating';
@@ -23,7 +24,7 @@ export class ListFavouMovieComponent implements OnInit {
 
   x: number = 0;
   user_id: number = Number(sessionStorage.getItem('user_id'));
-
+  
 
   constructor(private backendService:BackendService,  public loginService: AuthenticationService) { 
   

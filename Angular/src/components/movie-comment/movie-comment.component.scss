@@ -1,6 +1,11 @@
 
-h1{
+h2{
     text-align: center;
+}
+
+h2 img{
+    width: 55px;
+    height: 55px; 
 }
 
 div.commenti,  div.image{
@@ -9,7 +14,10 @@ div.commenti,  div.image{
 }
 
 div.commenti{
+    background-color: #0d6efd;
     border: solid 2px black;  
+    width: 350px; 
+    height: 450px;
     float: right;  
 }
 

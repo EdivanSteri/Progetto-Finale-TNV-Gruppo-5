@@ -33,7 +33,6 @@ export class AddRatingAndCommentComponent implements OnInit {
   goBack(){
     this.route.params.subscribe((params) => this.date1 = params['date1']);
     this.route.params.subscribe((params) => this.date2 = params['date2']);
-    console.log(this.date1, this.date2);
     window.location.href=`http://localhost:4200/listFilm-listHistory/${this.date1}/${this.date2}`;
   }
 

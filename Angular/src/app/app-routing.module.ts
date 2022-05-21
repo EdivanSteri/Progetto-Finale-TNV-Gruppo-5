@@ -24,7 +24,7 @@ const routes: Routes = [
   { path:'', component: UtentiComponent, canActivate:[AuthGuardService]},
   { path: 'logout', component: LogoutComponent, canActivate:[AuthGuardService] }, 
   { path: 'home', component : HomeComponent},
-  { path: 'movie-comment', component : MovieCommentComponent},
+  { path: 'movie-comment/:movieId/:date1/:date2', component : MovieCommentComponent},
   { path: 'movie-comment-detail', component : MovieCommentDetailComponent},
   { path: 'add-movie-comment', component : AddMovieCommentComponent},
   { path: 'movie-rating', component : MovieRatingComponent},

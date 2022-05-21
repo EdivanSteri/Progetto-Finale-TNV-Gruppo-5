@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { LoggedUser } from 'src/models/LoggedUser';
 import { MovieComment } from 'src/models/MovieComment';
 import { MovieTMDB } from 'src/models/MovieTMDB';
@@ -19,14 +20,20 @@ export class MovieCommentComponent implements OnInit {
   provaUser: boolean | null = null;
   arrayUsername: string [] = [];
   movieTMDB: MovieTMDB | null = null;
+  movieId: number | null = null;
+  data1: string | null =  null;
+  data2: string | null = null;
 
   constructor( 
-    private backendAPIService:BackendService ) { 
+    private backendAPIService:BackendService, private route: ActivatedRoute ) { 
 
     }
 
   ngOnInit(): void {
-    this.backendAPIService.getMovieById(453395).subscribe({
+    this.route.params.subscribe((params) => this.movieId = params['movieId'])
+    this.route.params.subscribe((params) => this.data1 = params['date1']);
+    this.route.params.subscribe((params) => this.data2 = params['date2']);
+    this.backendAPIService.getMovieById(this.movieId).subscribe({
       next: (res) => {
         this.movieTMDB = res,
         console.log(res, "film trovato")
@@ -40,7 +47,7 @@ export class MovieCommentComponent implements OnInit {
 
  
   getCommentsByMovieId(){
-    this.backendAPIService.getAllMovieCommentsByMovieId(453395).subscribe({
+    this.backendAPIService.getAllMovieCommentsByMovieId(this.movieId).subscribe({
       next: (res) => {
         this.commentsByMovieId = res,
         console.log(res, "commenti trovati")
@@ -69,6 +76,10 @@ export class MovieCommentComponent implements OnInit {
         this.provaUser = false;
       }
     })
+  }
+
+  goBack(){
+    window.location.href=`http://localhost:4200/listFilm-listHistory/${this.data1}/${this.data2}`;
   }
 
 

@@ -18,6 +18,7 @@ import { MovieRatingComponent } from '../movie-rating/movie-rating.component';
 export class ListFilmAndHistoryComponent implements OnInit {
 
   movieFavourList: MovieFav[] | null = null;
+  allComments: MovieComment [] | null = null;
   moviesTMDB: MovieListTMDB | null = null;
   data1: string | null =  null;
   data2: string | null = null;
@@ -25,8 +26,8 @@ export class ListFilmAndHistoryComponent implements OnInit {
   moviefav: MovieFav | null = null;
   user_id: number = Number(sessionStorage.getItem('user_id'));
   
-  commentsByMovieId: MovieComment []= [];
-  prova: boolean | null = null;
+ 
+
   
  
   constructor(private backendService:BackendService, private route: ActivatedRoute, public loginService: AuthenticationService) { 
@@ -37,6 +38,10 @@ export class ListFilmAndHistoryComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.user_id);
     this.backendService.getListaPreferiti().subscribe(res => this.movieFavourList = res);
+    this.backendService.getAllMovieComment().subscribe(res => {
+      this.allComments = res
+      console.log(this.allComments)
+    });
     this.route.params.subscribe((params) => this.data1 = params['date1']);
     this.route.params.subscribe((params) => this.data2 = params['date2']);
     this.backendService.getPopularFilm(this.data1, this.data2).subscribe({
@@ -68,22 +73,11 @@ export class ListFilmAndHistoryComponent implements OnInit {
   }
 
   isFavourite(movieId: number){
-    console.log(this.movieFavourList)
     return this.movieFavourList?.find(x => x.movie_Id == movieId && x.user_Id == this.user_id)
   }
 
-  getCommentsByMovieId(movieId: number){
-    this.backendService.getAllMovieCommentsByMovieId(movieId).subscribe({
-      next: (res) => {
-        this.commentsByMovieId = res,
-        console.log(res, "commenti trovati")
-        this.prova = true;
-      },
-      error: (err) => {
-        console.log(err, "nessuna lista commenti"),
-        this.prova = false;
-      }
-    })
+  findComments(movieId: number){
+    return  this.allComments?.find(c => c.movie_id == movieId)  
   }
 
 }
