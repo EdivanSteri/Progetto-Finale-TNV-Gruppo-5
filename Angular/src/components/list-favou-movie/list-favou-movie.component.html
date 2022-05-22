@@ -1,4 +1,46 @@
 <app-navbar></app-navbar>
+<div class="more">
+  <a  class="btn btn-info" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+  </a>
+</div>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Opzioni</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <button class="btn btn-info" routerLink="/movie-game">Back To Play</button><br><br>
+    <button class="btn btn-danger" (click)="svuotaLista()" type="button">Svuota Lista</button><br><br>
+
+    <!-- Button trigger modal -->
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Svuota Lista
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">ATTENZIONE</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Sei sicuro vi voler eliminare tutti i film dalla tua lista?
+          L'azione è irreversibile!!!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ho cambiato idea</button>
+          <button type="button" class="btn btn-danger" (click)="svuotaLista()">Svuota Lista</button>
+        </div>
+      </div>
+  </div>
+</div>
+
+  </div>
+</div>
 <div *ngIf="!isListaVuota()">
   
   <div *ngFor="let movie of moviesTMDB; let i = index">
@@ -47,7 +89,6 @@
         </div>
       </div>
     </div>
-    <button (click)="svuotaLista()" type="button">Svuota Lista</button>
   </div>
 
 
