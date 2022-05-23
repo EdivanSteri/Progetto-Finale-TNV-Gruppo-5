@@ -14,10 +14,12 @@ export class LoginComponent implements OnInit {
 
   user: LoggedUser | null = null;
   invalidLogin: boolean | null = null;
+  showPwd: boolean = false;
 
 
-  constructor(private router: Router,
-              private loginservice: AuthenticationService, private backendAPIService: BackendService){ }
+  constructor(
+    private router: Router,
+    private loginservice: AuthenticationService, private backendAPIService: BackendService){ }
 
   ngOnInit(): void {
   }
@@ -42,8 +44,11 @@ export class LoginComponent implements OnInit {
         console.log('Error!',res)               
       }
       
-    })
-    
+    })   
+  }
+
+  password(){
+    this.showPwd = !this.showPwd;
   }
 
 }

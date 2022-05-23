@@ -5,6 +5,26 @@
   </a>
 </div>
 
+ <!-- Modal -->
+ <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">ATTENZIONE</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Sei sicuro vi voler eliminare tutti i film dalla tua lista?</p>
+        <p>L'azione è <strong>IRREVERSIBILE</strong>!!!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ho cambiato idea</button>
+        <button type="button" class="btn btn-danger" (click)="svuotaLista()">Svuota Lista</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasExampleLabel">Opzioni</h5>
@@ -12,33 +32,10 @@
   </div>
   <div class="offcanvas-body">
     <button class="btn btn-info" routerLink="/movie-game">Back To Play</button><br><br>
-    <button class="btn btn-danger" (click)="svuotaLista()" type="button">Svuota Lista</button><br><br>
-
-    <!-- Button trigger modal -->
-  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-    Svuota Lista
-  </button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">ATTENZIONE</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Sei sicuro vi voler eliminare tutti i film dalla tua lista?
-          L'azione è irreversibile!!!
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ho cambiato idea</button>
-          <button type="button" class="btn btn-danger" (click)="svuotaLista()">Svuota Lista</button>
-        </div>
-      </div>
-  </div>
-</div>
-
+<!-- Button trigger modal -->
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      Svuota Lista
+    </button>
   </div>
 </div>
 <div *ngIf="!isListaVuota()">

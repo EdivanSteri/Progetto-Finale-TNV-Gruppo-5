@@ -13,9 +13,11 @@
     </div>
 
     <!-- Login Form -->
-    <form  #loginForm="ngForm" (ngSubmit)="checkLogin(loginForm)">
+    <form  #loginForm="ngForm" (ngSubmit)="checkLogin(loginForm)">    
       <input type="text" id="login" class="fadeIn second" placeholder="Username" name="username" ngModel required>
-      <input type="text" id="password" class="fadeIn third" name="password" placeholder="Password" ngModel required>
+      <div>
+        <input (dblclick)="showPwd = !showPwd" [type]="showPwd ? 'text' : 'password'" id="pwd" class="fadeIn third" name="password" placeholder="Password" ngModel required  title='Fai doppio click per mostrare/nascondere la password'>
+      </div>
       <button type="submit" class="btn btn-primary">Login</button>
     </form>
 
