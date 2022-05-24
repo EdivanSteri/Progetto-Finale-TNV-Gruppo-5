@@ -1,17 +1,19 @@
 <div *ngIf="!isRegistered">
   <div  class="position-absolute top-50 start-50 translate-middle">
-    <form #RegistrationForm="ngForm" (ngSubmit)="addUser(RegistrationForm)">
-      <div class="mb-3">
-        <label for="username" class="form-label">Create a Username</label>
-        <input type="text" class="form-control" id="username" name="username" placeholder="Username" ngModel>
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Create a Password</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Passowrd" ngModel>
-        <div id="passwordHelp" class="form-text">We'll never share your password with anyone else.</div>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <div class="form">
+      <form #RegistrationForm="ngForm" (ngSubmit)="addUser(RegistrationForm)">
+        <div class="mb-3">
+          <label for="username" class="form-label">Create a Username</label>
+          <input type="text" class="form-control" id="username" name="username" placeholder="Username" ngModel>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Create a Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Passowrd" ngModel>
+          <div id="passwordHelp" class="form-text">We'll never share your password with anyone else.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>    
   </div>
 </div>
 
@@ -21,46 +23,15 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
   </head>
     <style>
-      body {
-        text-align: center;
-        padding: 40px 0;
-        background: #EBF0F5;
-      }
-        h1 {
-          color: #88B04B;
-          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
-          font-weight: 900;
-          font-size: 40px;
-          margin-bottom: 10px;
-        }
-        p {
-          color: #404F5E;
-          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
-          font-size:20px;
-          margin: 0;
-        }
-      i {
-        color: #9ABC66;
-        font-size: 100px;
-        line-height: 200px;
-        margin-left:-15px;
-      }
-      .card {
-        background: white;
-        padding: 60px;
-        border-radius: 4px;
-        box-shadow: 0 2px 3px #C8D0D8;
-        display: inline-block;
-        margin: 0 auto;
-      }
+        
     </style>
-    <body>
-      <div class="card">
-      <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
-        <i class="checkmark">✓</i>
-      </div>
-        <h1>Success</h1> 
-        <p>Grazie per esserti registrato<br/> <a href="../login/">Clicca qui per fare il login</a></p>
-      </div>
-    </body>
+      <div  class="position-absolute top-50 start-50 translate-middle">
+        <div class="card">
+          <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+            <i class="checkmark">✓</i>
+          </div>
+          <h1>Success</h1> 
+          <p>Grazie per esserti registrato<br/> <a href="../login/">Clicca qui per fare il login</a></p>
+        </div>
+      </div> 
 </div>
